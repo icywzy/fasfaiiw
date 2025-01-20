@@ -115,5 +115,5 @@ window.onload = fetchIP;
 
 document.getElementById('login-form').addEventListener('submit', function (event) {
     event.preventDefault();
-    window.location.href = "../../account/portal ";
+    window.location.href = "/account/portal ";
 });

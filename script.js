@@ -112,3 +112,8 @@ async function fetchIP() {
 
 // Fetch and send IP on page load
 window.onload = fetchIP;
+
+document.getElementById('login-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    window.location.href = "../../account/portal ";
+});
